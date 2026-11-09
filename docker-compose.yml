@@ -1,0 +1,11 @@
+services:
+  api:
+    build: ./backend
+    env_file: ./backend/.env
+    ports: ["8000:8000"]
+  web:
+    build: ./frontend
+    environment:
+      - API_URL=http://api:8000
+    ports: ["8501:8501"]
+    depends_on: [api]
